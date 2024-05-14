@@ -1,3 +1,7 @@
+/*
+* demo show a window use gtk2
+* 2024.05.14 by dralee
+*/
 #include <gtk/gtk.h>
 
 GdkPixbuf *create_pixbuf(const gchar *filename)

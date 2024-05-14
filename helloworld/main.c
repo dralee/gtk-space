@@ -1,3 +1,7 @@
+/*
+* demo show a window use gtk4
+* 2024.05.14 by dralee
+*/
 #include <gtk/gtk.h>
 
 static void on_active(GtkApplication *app){

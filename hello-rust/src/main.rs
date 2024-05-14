@@ -1,3 +1,7 @@
+/*
+* demo show a window
+* 2024.05.14 by dralee
+*/
 use glib::clone;
 use gtk::glib;
 use gtk::prelude::*;

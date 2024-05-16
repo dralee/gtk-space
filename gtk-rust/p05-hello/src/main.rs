@@ -1,4 +1,3 @@
-use gtk::glib::gobject_ffi::GObject;
 /*
 * hello world increase/descrease number
 * 2024.05.15 by dralee
@@ -87,6 +86,6 @@ fn build_ui(app: &Application) {
         .title("Hello Number")
         .child(&gtk_box)
         .build();
-
+    
     window.present();
 }

@@ -1,14 +1,13 @@
 /*
-* main event loop blocked ui
+* main event loop only blocked the button not all the ui
+* by the async task
+* as the single thread we can even get rid of the channel while achieving the same result
 * 2024.05.17 by dralee
 */
-use std::thread;
-use std::time::Duration;
-
+use gtk::glib::{spawn_future_local, clone, timeout_future_seconds};
 use gtk::prelude::*;
 use gtk::{self, glib, Application, ApplicationWindow, Button};
-
-const APP_ID: &str = "org.gtk_rs.EventLoopSleep";
+const APP_ID: &str = "org.gtk_rs.EventLoopAvoidblock";
 
 fn main() -> glib::ExitCode {
     // create a new app
@@ -32,12 +31,14 @@ fn buidl_ui(app: &Application) {
         .build();
 
     // connect to "clicked" signal of button
-    button.connect_clicked(move |_|{
-        // GUI is blocked for 5 seconds after the button is pressed
-        let five_seconds = Duration::from_secs(5);
-        println!("let me sleep for 5s");
-        thread::sleep(five_seconds);
-        println!("5 seconds passed!");
+    button.connect_clicked(move |button|{
+        spawn_future_local(clone!(@weak button => async move {            
+            // Deactivate the button until the operation is done
+            button.set_sensitive(false);
+            timeout_future_seconds(5).await;
+            // Activate the button again
+            button.set_sensitive(true);
+        }));
     });
 
     // create a window

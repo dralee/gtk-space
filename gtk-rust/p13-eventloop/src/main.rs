@@ -1,5 +1,5 @@
 /*
-* main event loop blocked ui
+* main event loop avoid blocked ui
 * 2024.05.17 by dralee
 */
 use std::thread;
@@ -7,8 +7,9 @@ use std::time::Duration;
 
 use gtk::prelude::*;
 use gtk::{self, glib, Application, ApplicationWindow, Button};
+use gtk::gio::spawn_blocking;
 
-const APP_ID: &str = "org.gtk_rs.EventLoopSleep";
+const APP_ID: &str = "org.gtk_rs.EventLoopAvoidblock";
 
 fn main() -> glib::ExitCode {
     // create a new app
@@ -33,11 +34,15 @@ fn buidl_ui(app: &Application) {
 
     // connect to "clicked" signal of button
     button.connect_clicked(move |_|{
-        // GUI is blocked for 5 seconds after the button is pressed
-        let five_seconds = Duration::from_secs(5);
-        println!("let me sleep for 5s");
-        thread::sleep(five_seconds);
-        println!("5 seconds passed!");
+        // the long running operation runs now in a separate thread
+        println!("begin into sleep....");
+        spawn_blocking(move ||{
+            let five_seconds = Duration::from_secs(5);
+            println!("let me sleep for 5s");
+            thread::sleep(five_seconds);
+            println!("5 seconds passed!");
+        });
+        println!("after call sleep.");
     });
 
     // create a window

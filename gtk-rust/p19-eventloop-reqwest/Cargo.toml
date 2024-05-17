@@ -1,0 +1,18 @@
+[package]
+name = "p19-eventloop-reqwest"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+async-channel = "2.3.1"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }
+tokio = { version = "1", features = ["rt-multi-thread"] }
+
+
+[dependencies.gtk]
+package = "gtk4"
+version = "0.8.2"
+
+features = ["v4_12"]

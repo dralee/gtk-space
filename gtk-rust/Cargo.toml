@@ -1,4 +1,4 @@
 [workspace]
-members = ["p01-hello", "p02-hello", "p03-hello", "p04-hello", "p05-hello", "p06-custombutton", "p07-custombutton", "p08-value-variable", "p09-switch", "p10-custombutton", "p11-custombutton", "p12-eventloop"]
+members = ["p01-hello", "p02-hello", "p03-hello", "p04-hello", "p05-hello", "p06-custombutton", "p07-custombutton", "p08-value-variable", "p09-switch", "p10-custombutton", "p11-custombutton", "p12-eventloop", "p13-eventloop", "p14-eventloop", "p15-eventloop", "p16-eventloop", "p17-eventloop", "p18-eventloop-ashpd", "p19-eventloop-reqwest", "p20-settings", "p21-settings"]
 
 

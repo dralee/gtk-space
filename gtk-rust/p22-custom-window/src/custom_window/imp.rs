@@ -1,8 +1,8 @@
-use std::cell::{OnceCell, Cell};
+use std::cell::OnceCell;
 
 use gtk::gio::Settings;
 use gtk::subclass::prelude::*;
-use gtk::{ApplicationWindow};
+use gtk::ApplicationWindow;
 use gtk::glib::{self};
 
 #[derive(Default)]

@@ -31,7 +31,7 @@ fn build_ui(app: &Application){
     // Connect to "clicked" signal of button
     button.connect_clicked(|btn|{
         let txt = btn.label().unwrap_or_default();
-        if(txt == "Press me!")
+        if txt == "Press me!"
         {
             btn.set_label("Hello World");
         }

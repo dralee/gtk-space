@@ -1,5 +1,5 @@
 /*
-* custom list box, ineteger object store list
+* custom list box, ineteger object store list, increasing number
 * 2024.05.18 by dralee
 */
 mod integer_object;
@@ -11,7 +11,7 @@ use gtk::{
 use gtk::{prelude::*, ListItem};
 use integer_object::IntegerObject;
 
-const APP_ID:&str = "org.gtk_rs.ListIntegerObject";
+const APP_ID:&str = "org.gtk_rs.ListIntegerObject2";
 
 fn main() -> glib::ExitCode {
     // create application
@@ -61,13 +61,30 @@ fn build_ui(app:&Application) {
             .and_downcast::<Label>()
             .expect("The child has to be a Label.");
 
-        // set label to number
-        label.set_text(&integer_object.number().to_string());
+        // bind label to number
+        integer_object.bind_property("number", &label, "label")
+            .sync_create()
+            .build();        
     });
 
     // selection list
     let selection_model = SingleSelection::new(Some(model)); // MultiSection/NoSelection/SingleSelection
     let list_view = ListView::new(Some(selection_model), Some(factory));
+    
+    // double click the row
+    list_view.connect_activate(move |list_view, position|{
+        println!("===============position: {}", position);
+        // get IntegerObject from ListItem
+        let model = list_view.model().expect("the model has to exist.");
+        let integer_object = model.item(position)
+                .and_downcast::<IntegerObject>()
+                .expect("the item has to be an IntegerObject.");
+
+            // increase number of IntegerObject
+            integer_object.clone().increase_number();
+            let num = integer_object.number();
+            println!("now the integer object number: {}", num);
+    });
 
     // scrolled window
     let scrolled_window = ScrolledWindow::builder()

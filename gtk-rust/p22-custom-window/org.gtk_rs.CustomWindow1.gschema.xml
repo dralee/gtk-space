@@ -14,7 +14,7 @@
       <summary>Default window maximized behaviour</summary>
     </key>
     <key name="content" type="s">
-      <default></default>
+      <default>""</default>
       <summary>Default input text</summary>
     </key>
   </schema>

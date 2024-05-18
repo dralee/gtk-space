@@ -49,13 +49,14 @@ impl Window {
     pub fn save_window_size(&self) -> Result<(), glib::BoolError> {
         // get the size
         let size = self.default_size();
-
+        println!("+++++++++++++++++========================");
         // set the window state in settings
         self.settings().set_int(WINDOW_WIDTH, size.0)?;
         self.settings().set_int(WINDOW_HEIGHT, size.1)?;
         self.settings().set_boolean(IS_MAXIMIZED, self.is_maximized())?;        
-        
-        self.settings().bind(INPUT_CONTENT, self.as_ref(), INPUT_CONTENT).build();
+        let title = self.title().unwrap();
+        println!("title: {}", title);
+        self.settings().set_string(INPUT_CONTENT, title.as_str())?;
 
         Ok(())
     }
@@ -66,8 +67,12 @@ impl Window {
         let height = self.settings().int(WINDOW_HEIGHT);
         let is_maximized = self.settings().boolean(IS_MAXIMIZED);
         let content = self.settings().string(INPUT_CONTENT);
+        
+        println!("content: {}", content);
 
-        self.set_content(content);
+        // set title
+        self.set_title(Some(content.as_str()));
+        
         
         // set the size of the window
         self.set_default_size(width, height);

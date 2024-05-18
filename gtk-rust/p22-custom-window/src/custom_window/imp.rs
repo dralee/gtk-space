@@ -3,15 +3,10 @@ use std::cell::{OnceCell, Cell};
 use gtk::gio::Settings;
 use gtk::subclass::prelude::*;
 use gtk::{ApplicationWindow};
-use gtk::glib::{self, Properties};
-use gtk::prelude::*;
+use gtk::glib::{self};
 
-
-#[derive(Properties, Default)]
-#[properties(wrapper_type = super::Window)]
+#[derive(Default)]
 pub struct Window {
-    #[property(get, set)]
-    pub content: Cell<String>,
     pub settings: OnceCell<Settings>, // 只初始化一次
 }
 
@@ -22,7 +17,6 @@ impl ObjectSubclass for Window {
     type ParentType = ApplicationWindow;    
 }
 
-#[glib::derived_properties]
 impl ObjectImpl for Window {
     fn constructed(&self) {
         self.parent_constructed();

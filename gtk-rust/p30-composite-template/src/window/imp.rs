@@ -3,7 +3,7 @@
 * 2024.05.23 by dralee
 */
 use gtk::prelude::*;
-use gtk::{glib, Button, Box, CompositeTemplate};
+use gtk::{glib, Button, CompositeTemplate};
 use gtk::subclass::prelude::*;
 use glib::subclass::InitializingObject;
 use glib::GString;
@@ -15,8 +15,6 @@ pub struct Window {
     pub button: TemplateChild<Button>,
     #[template_child]
     pub button2: TemplateChild<Button>,
-    #[template_child]
-    pub box1: TemplateChild<Box>,
 }
 
 #[glib::object_subclass]
@@ -33,6 +31,7 @@ impl ObjectSubclass for Window {
         obj.init_template();
     }
 }
+
 
 impl ObjectImpl for Window {
     fn constructed(&self) {

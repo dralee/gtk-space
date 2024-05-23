@@ -29,3 +29,19 @@ mkdir -p $HOME/.local/share/glib-2.0/schemas
 cp org.gtk_rs.Settings1.gschema.xml $HOME/.local/share/glib-2.0/schemas/
 glib-compile-schemas $HOME/.local/share/glib-2.0/schemas/
 ```
+
+#### UI资源
+为了实现UI/代码分离，需要创建window.ui并创建resources.gresource.xml指定需要包含的ui文件
+* 需要添加资源编译工具依赖 glib-build-tools
+```bash
+cargo add glib-build-tools --build
+```
+* 根目录创建build.rs
+```rust
+fn main(){
+    glib_build_tools::compile_resources(&["resources"], 
+        "resources/resources.gresource.xml", 
+        "composite_template1.gresource",);
+}
+```
+* 使用宏注册并包含资源：gio::resources_register_include!

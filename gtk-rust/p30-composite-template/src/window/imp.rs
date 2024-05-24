@@ -15,6 +15,8 @@ pub struct Window {
     pub button: TemplateChild<Button>,
     #[template_child]
     pub button2: TemplateChild<Button>,
+    #[template_child]
+    pub button3: TemplateChild<Button>,
 }
 
 #[glib::object_subclass]
@@ -50,7 +52,12 @@ impl ObjectImpl for Window {
                 txt = GString::from("Welldone");
             }
             button.set_label(txt.as_str());
-        });        
+        });
+        
+        self.button3.connect_clicked(move|button|{ // 点击关闭窗口
+            let window = button.parent().and_downcast::<gtk::ApplicationWindow>().unwrap();
+            window.close();
+        });
     }
 }
 

@@ -4,9 +4,12 @@
 * 2024.05.24 by dralee
 */
 use std::cell::RefCell;
+
+
 use gtk::glib;
-use gtk::{Label, CheckButton, Binding};
+use gtk::{Label, CheckButton, CompositeTemplate};
 use gtk::subclass::prelude::*;
+use glib::Binding;
 
 #[derive(Default, CompositeTemplate)]
 #[template(resource = "/org/gtk_rs/TodoList/task_row.ui")]
@@ -22,7 +25,7 @@ pub struct TaskRow {
 
 #[glib::object_subclass]
 impl ObjectSubclass for TaskRow {
-    const NAME:&str = "TodoTaskRow";
+    const NAME:&'static str = "TodoTaskRow";
     type Type = super::TaskRow;
     type ParentType = gtk::Box;
 

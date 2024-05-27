@@ -83,7 +83,7 @@ impl Window {
         factory.connect_setup(move |_, list_item|{
             // create TaskRow
             let task_row = TaskRow::new();
-            list_item.downcast::<ListItem>()
+            list_item.downcast_ref::<ListItem>()
                 .expect("Needs to be ListItem")
                 .set_child(Some(&task_row));
         });

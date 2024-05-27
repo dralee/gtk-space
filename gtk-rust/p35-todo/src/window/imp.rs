@@ -3,7 +3,7 @@
 * 2024.05.24 by dralee
 */
 use std::cell::RefCell;
-use gtk::{prelude::*, template_callbacks, ListView, Entry};
+use gtk::{ ListView, Entry};
 use gtk::{glib, gio, CompositeTemplate};
 use gtk::subclass::prelude::*;
 use glib::subclass::InitializingObject;

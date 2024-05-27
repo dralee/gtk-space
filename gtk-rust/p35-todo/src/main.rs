@@ -2,6 +2,8 @@
 * composite template
 * 2024.05.23 by dralee
 */
+mod task_object;
+mod task_row;
 mod window;
 
 use gtk::prelude::*;

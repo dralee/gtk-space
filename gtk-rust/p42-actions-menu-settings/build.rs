@@ -1,0 +1,9 @@
+/**
+ * 编译资源文件
+ * 2024.05.27 by dralee
+ */
+fn main(){
+    glib_build_tools::compile_resources(&["src/resources"], 
+        "src/resources/resources.gresource.xml", 
+        "actionsstatesettings.gresource",);
+}

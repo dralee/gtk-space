@@ -2,7 +2,7 @@
 * composite template window imp use custombutton
 * 2024.05.24 by dralee
 */
-use gtk::{prelude::*, template_callbacks};
+use gtk::{prelude::*};
 use gtk::{glib, CompositeTemplate};
 use gtk::subclass::prelude::*;
 use glib::subclass::InitializingObject;

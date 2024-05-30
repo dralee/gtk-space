@@ -16,7 +16,7 @@ use crate::task_object::{TaskData, TaskObject};
 use crate::utils::data_path;
 
 #[derive(CompositeTemplate, Default)]
-#[template(resource = "/org/gtk_rs/TodoListMenu/window.ui")]
+#[template(resource = "/org/dralee/TodoListMenu/window.ui")]
 pub struct Window {
     #[template_child]
     pub entry: TemplateChild<Entry>,

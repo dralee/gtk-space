@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-  <schema id="org.gtk_rs.TodoListMenu" path="/org/gtk_rs/TodoListMenu/">
+  <schema id="org.dralee.TodoListMenu" path="/org/dralee/TodoListMenu/">
     <key name="filter" type="s">
       <choices>
         <choice value='All'/>

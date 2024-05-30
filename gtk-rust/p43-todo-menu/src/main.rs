@@ -12,7 +12,7 @@ use gtk::{gio, glib, Application};
 
 use window::Window;
 
-const APP_ID:&str = "org.gtk_rs.TodoListMenu";
+const APP_ID:&str = "org.dralee.TodoListMenu";
 
 fn main() -> glib::ExitCode {
     // register and include resources

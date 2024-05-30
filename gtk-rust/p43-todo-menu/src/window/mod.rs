@@ -5,14 +5,16 @@
 
 mod imp;
 
+use std::fs::File;
+
 use glib::{Object, clone};
-use gtk::gio::ListStore;
 use gtk::subclass::prelude::*;
-use gtk::{gio::{self, Settings}, glib, Application, NoSelection, Settings, SignalListItemFactory};
+use gtk::{gio::{self, Settings}, glib, Application, NoSelection, SignalListItemFactory};
 use gtk::{prelude::*, CustomFilter, FilterListModel, ListItem};
 
-use crate::task_object::TaskObject;
+use crate::task_object::{TaskData, TaskObject};
 use crate::task_row::TaskRow;
+use crate::utils::data_path;
 use crate::APP_ID;
 
 glib::wrapper! {
@@ -189,6 +191,23 @@ impl Window {
             "Open" => Some(filter_open),
             "Done" => Some(filter_done),
             _ => unreachable!(),
+        }
+    }
+
+    fn restore_data(&self) {
+        if let Ok(file) = File::open(data_path()) {
+            // deserialize data from file to vector
+            let backup_data:Vec<TaskData> = serde_json::from_reader(file)
+                .expect("it should be posible to read backup_data from the json file.");
+
+            // convert Vec<TaskData> to Vec<TaskObject>
+            let task_objects:Vec<TaskObject> = backup_data
+                .into_iter()
+                .map(TaskObject::from_task_data)
+                .collect();
+
+            // insert restored objects into model
+            self.tasks().extend_from_slice(&task_objects);
         }
     }
 }

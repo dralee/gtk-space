@@ -1,9 +1,10 @@
 /*
 * composite template
-* 2024.05.23 by dralee
+* 2024.05.30 by dralee
 */
 mod task_object;
 mod task_row;
+mod utils;
 mod window;
 
 use gtk::prelude::*;
@@ -22,10 +23,17 @@ fn main() -> glib::ExitCode {
     let app = Application::builder().application_id(APP_ID).build();
 
     // connect to "activate" signal
+    app.connect_startup(setup_shortcurts);
     app.connect_activate(build_ui);
 
     // run app
     app.run()
+}
+
+fn setup_shortcurts(app:&Application) {
+    app.set_accels_for_action("win.filter('All')", &["<Ctrl>a"]);
+    app.set_accels_for_action("win.filter('Open')", &["<Ctrl>o"]);
+    app.set_accels_for_action("win.filter('Done')", &["<Ctrl>d"]);
 }
 
 fn build_ui(app: &Application) {    

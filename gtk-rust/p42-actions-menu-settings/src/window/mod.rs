@@ -4,7 +4,7 @@
  */
 mod imp;
 
-use gtk::{gio::{self, ActionEntry, PropertyAction, Settings}, 
+use gtk::{gio::{self, ActionEntry,  Settings}, 
 glib::{self, Object}, prelude::*, subclass::prelude::*, Application,Orientation};
 
 use crate::APP_ID;
@@ -46,7 +46,6 @@ impl Window {
         self.add_action_entries([action_count]);
 
         // add property action "button-frame" to window
-        let button = self.imp().button.get();
         let action_button_frame = self.settings().create_action("button-frame"); //PropertyAction::new("button-frame", &button, "has-frame");
         self.add_action(&action_button_frame);
 

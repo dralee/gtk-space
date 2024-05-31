@@ -45,3 +45,6 @@ fn main(){
 }
 ```
 * 使用宏注册并包含资源：gio::resources_register_include!
+
+### css样式
+运行中，可通过ctrl+shift+D 查看GtkInspector

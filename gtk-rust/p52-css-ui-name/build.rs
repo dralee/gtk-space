@@ -5,5 +5,5 @@
 fn main(){
     glib_build_tools::compile_resources(&["src/resources"], 
         "src/resources/resources.gresource.xml", 
-        "todo_list_menu.gresource",);
+        "todo_list_css_name.gresource",);
 }

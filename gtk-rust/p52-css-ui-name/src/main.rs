@@ -14,11 +14,11 @@ use gtk::{gio, glib, Application};
 
 use window::Window;
 
-const APP_ID:&str = "org.dralee.TodoListMenu";
+const APP_ID:&str = "org.dralee.TodoListCssName";
 
 fn main() -> glib::ExitCode {
     // register and include resources
-    gio::resources_register_include!("todo_list_menu.gresource")
+    gio::resources_register_include!("todo_list_css_name.gresource")
         .expect("failed to register resources.");
 
     // create a new application
@@ -37,7 +37,7 @@ fn main() -> glib::ExitCode {
 
 fn load_css(){
     let provider = CssProvider::new();
-    provider.load_from_resource("/org/dralee/TodoListMenu/style.css");
+    provider.load_from_resource("/org/dralee/TodoListCssName/style.css");
 
     gtk::style_context_add_provider_for_display(
         &Display::default().expect("could not connect to a display"),

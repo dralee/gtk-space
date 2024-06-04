@@ -12,7 +12,7 @@ use gtk::subclass::prelude::*;
 use glib::Binding;
 
 #[derive(Default, CompositeTemplate)]
-#[template(resource = "/org/dralee/TodoListMenu/task_row.ui")]
+#[template(resource = "/org/dralee/TodoListCssName/task_row.ui")]
 pub struct TaskRow {
     #[template_child]
     pub completed_button: TemplateChild<CheckButton>,

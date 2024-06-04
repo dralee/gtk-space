@@ -48,3 +48,12 @@ fn main(){
 
 ### css样式
 运行中，可通过ctrl+shift+D 查看GtkInspector
+#### gtk内置颜色可通过 @name形式进行引用
+https://gitlab.gnome.org/GNOME/gtk/-/blob/b2c227e9c57839a2a4e24462a71ae0bad9a95264/gtk/theme/Default/_colors-public.scss
+```css
+task-row {
+    background-color: @success_color;
+  }
+```
+gtk支持的样式属性：
+https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties

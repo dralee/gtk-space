@@ -119,5 +119,10 @@ MSVC使用手动操作
 xcopy /s /i C:\gnome\share\icons\hicolor\scalable\apps C:\gnome\share\icons\hicolor\scalable\actions
 gtk4-update-icon-cache.exe -t -f C:\gnome\share\icons\hicolor
 ```
+##### 使用方式
+* 最简单使用方式是将gtk::Application替换为adw::Application
+
+adw::ApplicationWindow没有标题栏区域，当使用adw::NavigationSplitView，在左侧NavigationSplitView添加了集合视图的侧边栏
+而任务视图则占据了右侧空间。使用adw::ApplicationWindow时，集合视图和任务视图有自己视图adw::HeadBar分隔符跨越整个窗口。
 
 

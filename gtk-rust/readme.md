@@ -57,3 +57,67 @@ task-row {
 ```
 gtk支持的样式属性：
 https://docs.gtk.org/gtk4/css-properties.html#gtk-css-properties
+
+
+### 编译
+```bash
+cargo build -r
+cargo build -r --target=x86_64-unknown-linux-musl
+```
+#### Libadwaita
+是一个增强GTK4的库：
+* 提供小部件以更好地遵循GNOME的HIG
+* 提供小组件，让应用程序根据可用空间[更改其布局](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/adaptive-layouts.html)
+* 集成了[Adwaita](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/adaptive-layouts.html)样式表
+* 允许使用[命名颜色](https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html)进行时重新着色
+* 添加[API](https://world.pages.gitlab.gnome.org/Rust/libadwaita-rs/stable/latest/docs/libadwaita/struct.StyleManager.html)以以支持跨桌面深色样式首选项
+```bash
+cargo add libadwaita --rename adw --features v1_5
+```
+#### linux操作系统
+* Fedora及其衍生产品
+```bash
+sudo dnf install libadwaita-devel
+```
+* Debian及其衍生产品
+```bash
+sudo apt install libadwaita-1-dev
+```
+* Arch及其衍生产品
+```bash
+sudo pacman -S libadwaita
+```
+#### macOS
+```bash
+brew install libadwaita
+```
+#### windows
+* 如果使用gvsbuild
+```bash
+gvsbuild build libadwaita librsvg
+```
+* 如果使用msvc手动生成
+在Windows的“开始”菜单中，搜索“x64 Native Tools Command Prompt for VS 2022”，
+这将打开配置为使用MSVC x64工具终端。从那里运行以下命名：
+```bash
+cd /
+git clone --branch libadwaita-1-3 https://gitlab.gnome.org/GNOME/libadwaita.git --depth 1
+cd libadwaita
+meson setup builddir -Dprefix=C:/gnome -Dintrospection=disabled -Dvapi=false
+meson install -C builddir
+```
+##### 解决缺少图标问题
+GTK<4.10碕此解决方法
+* gsbuild
+在命名提示符下：
+```bash
+xcopy /s /i C:\gtk-build\gtk\x64\release\share\icons\hicolor\scalable\apps C:\gtk-build\gtk\x64\release\share\icons\hicolor\scalable\actions
+gtk4-update-icon-cache.exe -t -f C:\gtk-build\gtk\x64\release\share\icons\hicolor
+```
+MSVC使用手动操作
+```bash
+xcopy /s /i C:\gnome\share\icons\hicolor\scalable\apps C:\gnome\share\icons\hicolor\scalable\actions
+gtk4-update-icon-cache.exe -t -f C:\gnome\share\icons\hicolor
+```
+
+

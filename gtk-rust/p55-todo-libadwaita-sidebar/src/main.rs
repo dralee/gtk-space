@@ -14,7 +14,7 @@ use gtk::CssProvider;
 
 use window::Window;
 
-const APP_ID:&str = "org.dralee.TodoListLibadwaitaBox";
+const APP_ID:&str = "org.dralee.TodoListLibadwaitaSidebar";
 
 fn main() -> glib::ExitCode {
     // register and include resources
@@ -27,7 +27,7 @@ fn main() -> glib::ExitCode {
     // connect to "activate" signal
     app.connect_startup(|app|{
         setup_shortcurts(app);
-        //load_css();
+        load_css();
     });
     app.connect_activate(build_ui);
 
@@ -35,16 +35,15 @@ fn main() -> glib::ExitCode {
     app.run()
 }
 
-/*
 fn load_css(){
     let provider = CssProvider::new();
-    provider.load_from_resource("/org/dralee/TodoListLibadwaitaBox/style.css");
+    provider.load_from_resource("/org/dralee/TodoListLibadwaitaSidebar/style.css");
 
     gtk::style_context_add_provider_for_display(
         &Display::default().expect("could not connect to a display"),
         &provider, 
         gtk::STYLE_PROVIDER_PRIORITY_APPLICATION);
-}*/
+}
 
 fn setup_shortcurts(app:&adw::Application) {
     app.set_accels_for_action("win.filter('All')", &["<Ctrl>a"]);

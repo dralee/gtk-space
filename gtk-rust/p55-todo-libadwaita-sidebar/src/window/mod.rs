@@ -12,7 +12,7 @@ use adw;
 use glib::{Object, clone};
 use adw::subclass::prelude::*;
 use adw::{prelude::*, ActionRow};
-use gtk::{gio::{self, Settings}, glib, NoSelection};
+use gtk::{gio::{self, Settings}, glib, NoSelection,};
 use gtk::{CheckButton, Align, CustomFilter, FilterListModel};
 
 use crate::task_object::{TaskData, TaskObject};

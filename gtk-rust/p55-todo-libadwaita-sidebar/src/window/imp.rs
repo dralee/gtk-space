@@ -31,7 +31,7 @@ pub struct Window {
 impl ObjectSubclass for Window {
     const NAME: &'static str = "TodoWindow";
     type Type = super::Window;
-    type ParentType = gtk::ApplicationWindow;
+    type ParentType = adw::ApplicationWindow;
 
     fn class_init(klass: &mut Self::Class) {
         klass.bind_template();
@@ -91,5 +91,9 @@ impl WindowImpl for Window {
 
 // shared by all application windows
 impl ApplicationWindowImpl for Window {
+    
+}
+
+impl AdwApplicationWindowImpl for Window {
     
 }
